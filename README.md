@@ -12,9 +12,9 @@ Instead we have to do things like this for images:
 
 ```html
 <picture>
-  <source srcset="image.webp" type="image/webp">
-  <source srcset="image.jpg" type="image/jpeg">
-  <img src="image.jpg" alt="a cat">
+  <source srcset="my-cat.webp" type="image/webp">
+  <source srcset="my-cat.jpg" type="image/jpeg">
+  <img src="my-cat.jpg" alt="A picture of my cat">
 </picture>
 ```
 
@@ -25,7 +25,7 @@ This complexity pushed onto developers leads them to either have to thing very h
 Why not simply do this instead?
 
 ```html
-<img src="image" alt="a cat">
+<img src="my-cat" alt="A picture of my cat">
 ```
 
 The browser should tell the server all it needs to know to decide which image is best to return:
