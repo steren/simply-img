@@ -48,3 +48,4 @@ This repository explores an implementation of that.
 * [Content negotiation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Content_negotiation)
 * [`Accept` Values that browsers send for images](https://developer.mozilla.org/en-US/docs/Web/HTTP/Content_negotiation/List_of_default_Accept_values#values_for_an_image)
 * [HTTP Client Hints](https://developer.mozilla.org/en-US/docs/Web/HTTP/Client_hints) as a way to extend `Accept-*`
+* [Responsive Image Client Hints](https://wicg.github.io/responsive-image-client-hints/)
