@@ -30,12 +30,13 @@ Why not simply do this instead?
 
 The browser should tell the server all it needs to know to decide which image is best to return:
 
-[x] which image formats it supports
-[ ] which screen density is used (1x, 2x, etc.)
-[ ] which size the image will be rendered (if known)
-[ ] if the user is on a slow connection
-[ ] if dark mode is used
-[ ] ...
+- [x] which image formats it supports
+- [ ] which screen density is used (1x, 2x, etc.)
+- [ ] which size the image will be rendered (if known)
+- [ ] if the client has enabled data saver
+- [ ] if the user is on a slow connection
+- [ ] if dark mode is used
+- [ ] ...
 
 This is called [content negotiation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Content_negotiation).
 
@@ -46,3 +47,6 @@ This repository explores an implementation of that.
 * [Accept-Encoding header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Encoding)
 * [Content negotiation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Content_negotiation)
 * [`Accept` Values that browsers send for images](https://developer.mozilla.org/en-US/docs/Web/HTTP/Content_negotiation/List_of_default_Accept_values#values_for_an_image)
+* [HTTP Client Hints](https://developer.mozilla.org/en-US/docs/Web/HTTP/Client_hints) as a way to extend `Accept-*`
+* [Responsive Image Client Hints](https://wicg.github.io/responsive-image-client-hints/)
+* [Client hints on web.dev](https://web.dev/performance-optimizing-content-efficiency-client-hints/)
