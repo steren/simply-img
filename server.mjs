@@ -27,6 +27,8 @@ async function serveImage(res, req) {
     contentType = 'image/jpeg';
   }
 
+  res.setHeader('Vary', 'Accept');
+
   console.log(`Serving image: ${contentType}`);
 
   try {
