@@ -6,7 +6,7 @@ const readFile = fs.promises.readFile;
 
 async function serveIndex(req, res) {
   console.log(`request headers received by "${req.url}":`);
-  console.log(req.headers);
+  console.log(JSON.stringify(req.headers, null, 2));
 
   const data = await readFile('index.html');
   res.setHeader('Content-Type', 'text/html');
@@ -18,7 +18,7 @@ async function serveIndex(req, res) {
 
 async function serveImage(req, res) {
   console.log(`request headers received by "${req.url}":`);
-  console.log(req.headers);
+  console.log(JSON.stringify(req.headers, null, 2));
 
   const acceptHeader = req.headers.accept;
   const image = path.basename(req.url);
