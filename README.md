@@ -31,7 +31,7 @@ Why not simply do this instead?
 The browser should tell the server all it needs to know to decide which image is best to return:
 
 - [x] which image formats it supports
-- [ ] which screen density is used (1x, 2x, etc.)
+- [x] which screen density is used (1x, 2x, etc.)
 - [ ] which size the image will be rendered (if known)
 - [ ] if the client has enabled data saver
 - [ ] if the user is on a slow connection
