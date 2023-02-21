@@ -4,13 +4,22 @@ import path from 'path';
 
 const readFile = fs.promises.readFile;
 
-async function serveIndex(res) {
+async function serveIndex(req, res) {
+  console.log(`request headers received by "${req.url}":`);
+  console.log(req.headers);
+
   const data = await readFile('index.html');
-  res.writeHead(200, { 'Content-Type': 'text/html' });
+  res.setHeader('Content-Type', 'text/html');
+  
+  console.log(`response headers sent by "${req.url}":`);
+  console.log(JSON.stringify(res.getHeaders(), null, 2));
   res.end(data);
 }
 
-async function serveImage(res, req) {
+async function serveImage(req, res) {
+  console.log(`request headers received by "${req.url}":`);
+  console.log(req.headers);
+
   const acceptHeader = req.headers.accept;
   const image = path.basename(req.url);
   let file;
@@ -31,9 +40,13 @@ async function serveImage(res, req) {
 
   console.log(`Serving image: ${contentType}`);
 
+  res.setHeader('Content-Type', contentType);
+
   try {
     const data = await readFile(file);
-    res.writeHead(200, { 'Content-Type': contentType });
+
+    console.log(`response headers sent by "${req.url}":`);
+    console.log(JSON.stringify(res.getHeaders(), null, 2));
     res.end(data);
   } catch (err) {
     console.error(err);
@@ -42,9 +55,11 @@ async function serveImage(res, req) {
 
 const server = http.createServer(async (req, res) => {
   if (req.url.startsWith('/images/')) {
-    await serveImage(res, req);
+    await serveImage(req, res);
+  } else if (req.url.startsWith('/favicon')) {
+    return;
   } else {
-    await serveIndex(res);
+    await serveIndex(req, res);
   }
 });
 
