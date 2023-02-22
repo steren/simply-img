@@ -22,7 +22,7 @@ async function serveIndex(req, res) {
 
 // Return the image to serve based on a ste of options (content type,pixel ratio, etc.)
 function pickFile(image, options) {
-  const { contentType, dpr } = options;
+  const { contentType, dpr, saveData } = options;
 
   let extension;
   if(contentType === 'image/avif') {
@@ -34,7 +34,8 @@ function pickFile(image, options) {
   }
 
   let pixelRatio = 1;
-  if(dpr > 1) {
+  // if saveData, never serve a high density image
+  if(dpr > 1 && !saveData) {
     pixelRatio = 2;
   }
 
@@ -49,6 +50,7 @@ async function serveImage(req, res) {
 
   let contentType;
   let dpr;
+  let saveData = false;
 
   const acceptHeader = req.headers.accept;
   const image = path.basename(req.url);
@@ -65,7 +67,7 @@ async function serveImage(req, res) {
   console.log(`Image Content-Type served: ${contentType}`);
 
   
-  if(req.headers.dpr) {
+  if(req.headers['dpr']) {
     console.log(`Client Device Pixel Ratio: ${req.headers.dpr}`);
 
     dpr = Math.ceil(parseFloat(req.headers.dpr));
@@ -74,7 +76,12 @@ async function serveImage(req, res) {
     res.setHeader('Content-DPR', dpr);
   }
 
-  const file = pickFile(image, { contentType, dpr });
+  if(req.headers['save-data']) {
+    console.log('Client is in Save-Data mode');
+    saveData = true;
+  }
+
+  const file = pickFile(image, { contentType, dpr, saveData });
 
 
   console.log(`Serving file: ${file}`);

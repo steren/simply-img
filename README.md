@@ -33,7 +33,7 @@ The browser should tell the server all it needs to know to decide which image is
 - [x] which image formats it supports
 - [x] which screen density is used (1x, 2x, etc.)
 - [ ] which size the image will be rendered (if known)
-- [ ] if the client has enabled data saver
+- [x] if the client has enabled [data saver](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Save-Data)
 - [ ] if the user is on a slow connection
 - [ ] if dark mode is used
 - [ ] ...
